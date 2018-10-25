@@ -128,21 +128,21 @@ def midpoint(node):
     return slow
 
 
-def sort(leftN,rigthN):
+def sort(leftN,rightN):
     head = Node(None)
     current = head
    
-    while leftN is not None and rigthN is not None:
-        if leftN.getID() < = rigthN.getID():  
+    while leftN is not None and rightN is not None:
+        if leftN.getID() < = rightN.getID():  
             current.setNext(leftN)  # current points to left ID
             leftN = leftN.getNext()  # move it to the right
         else:
-            current.setNext(rigthN)  # current point to right ID
+            current.setNext(rightN)  # current point to right ID
             temp = leftN.getID() # temp stores the left ID
             leftN.getID() = rightN.getID() 
             leftN.getNext().getID() = temp
     if leftN is None:  # if left is none, point to right
-       current.setNext(rigthN)
+       current.setNext(rightN)
     else:
        current.setNext(leftN)  # if right is none, point to left
     return head.getNext()  # return correctly arranged items
