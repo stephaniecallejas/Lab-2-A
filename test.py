@@ -131,46 +131,46 @@ def midpoint(node):
 def sort(leftN,rigthN):
     head = Node(None)
     current = head
+   
     while leftN is not None and rigthN is not None:
-        if leftN.getID() <= rigthN.getID():  # if the ID on the left is less than or equal to the right ID
+        if leftN.getID() < = rigthN.getID():  
             current.setNext(leftN)  # current points to left ID
             leftN = leftN.getNext()  # move it to the right
         else:
             current.setNext(rigthN)  # current point to right ID
-            rigthN = rigthN.getNext()  # else move right ID to left
-        current = current.getNext()
+            temp = leftN.getID() # temp stores the left ID
+            leftN.getID() = rightN.getID() 
+            leftN.getNext().getID() = temp
     if leftN is None:  # if left is none, point to right
-        current.setNext(rigthN)
+       current.setNext(rigthN)
     else:
-        current.setNext(leftN)  # if right is none, point to left
+       current.setNext(leftN)  # if right is none, point to left
     return head.getNext()  # return correctly arranged items
 
 
-def mergeSort(self, node1):
-        # Base cases and if head is empty#
-    if node1 is None or node1.getNext() is None:
-        return node1
+def mergeSort(self, head):
+   
+    if head is None or head.getNext() is None:
+        return head
 
-    # find middle of list and set adjacent element to None #
-    middle = midpoint(node1)
-    nextToMiddle = middle.getNext()
-    middle.setNext(None)  # middle.next points to none
+    middle = midpoint(head)
+    middleNext = middle.getNext()
 
-    # recursive calls for left and right sides #
-    left = self.mergeSort(node1)
-    right = self.mergeSort(nextToMiddle)
+    # recursive calls for left and right sides 
+    left = self.mergeSort(head)
+    right = self.mergeSort(middleNext)
 
-    # Merge the sorted lists #
+    # Merge the lists 
     sortedList = sort(left, right)
     return sortedList
 
 
-def s3(List):
-    templist = copy.copy(List)  # make copy of original list
+def s3(list):
+    templist = copy.copy(list)  # make copy of original list
     merged = templist.mergeSort(templist.head)
     duplicates = linked_list()
     while merged.getNext() is not None:
-        if merged.getID() == merged.getNext().getID():  # compare adjacent IDs
+        if merged.getID() == merged.getNext().getID():  # compare IDs
             duplicates.add(merged.getID())  # if they match, add them to list
         merged = merged.getNext()
     return duplicates
@@ -183,17 +183,18 @@ c.printL()
 
 #################################################################################
 
-def s4(List):
-    seen = [False for i in range(6001)]  # create a 1D boolean array of only False
-    current = List.head
-    duplicates = linked_list()
+def s4(list):
+    seen = [False]  # create a 1D boolean array of only False
+    for i in range(6001):
+        current = list.head
+        duplicates = linked_list()
 
     while current.getNext() is not None:  # traverse the list
         item = current.getID()  # set 'item' to current ID
         if seen[item]:
             duplicates.add(item)  # if it's been seen before, add to list
         else:
-            seen[item] = True  # else update boolean array that it has now been seen
+            seen[item] = True  
         current = current.getNext()  # move on to next ID
     return duplicates
 
@@ -226,11 +227,6 @@ with open('vivendi.txt', 'r') as file:
         my_linkedList2.append(line)
 
 my_linkedList1.tail.next = my_linkedList2.head
-last = my_linkedList1.tail.next
-head = my_linkedList1.next
-my_linkedList1.head.item
 
-
-#my_linkedList1.s4()
 
 
